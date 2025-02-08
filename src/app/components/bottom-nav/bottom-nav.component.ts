@@ -15,11 +15,11 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class BottomNavComponent {
   navItems = [
-    { path: '/', icon: 'dashboard', label: 'Dashboard' },
-    { path: '/branches', icon: 'store', label: 'Sucursales' },
-    { path: '/orders', icon: 'shopping_bag', label: 'Ordernes' },
-    { path: '/inventory', icon: 'inventory', label: 'Inventario' },
-    { path: '/reports', icon: 'bar_chart', label: 'Reportes' },
-    { path: '/settings', icon: 'settings', label: 'Configuracion' }
+    { path: '/admin', icon: 'dashboard', label: 'Dashboard' },
+    { path: '/admin/branches', icon: 'store', label: 'Sucursales' },
+    { path: '/admin/orders', icon: 'shopping_bag', label: 'Ordernes' },
+    { path: '/admin/inventory', icon: 'inventory', label: 'Inventario' },
+    { path: '/admin/reports', icon: 'bar_chart', label: 'Reportes' },
+    { path: '/admin/settings', icon: 'settings', label: 'Configuracion' }
   ];
 }

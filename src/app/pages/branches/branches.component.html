@@ -1,16 +1,17 @@
 
 <section class="orders-section">
     <h2> Sucursal</h2>
-    <mat-card *ngFor="let order of Branches" class="order-card">
+    <mat-card *ngFor="let branch of Branches" class="order-card">
       <mat-card-content>
-        <div class="order-header">
+        <div class="order-header" (click)="onBranch(branch)">
           <div>
-            <p class="order-title">Sucursal #{{order.id}}</p>
-            <p class="order-subtitle">{{order.Nombre}} Direccion • {{order.Direccion}}</p>
+            <p class="order-title">Sucursal #{{branch.Id}}</p>
+            <p class="order-subtitle">{{branch.Nombre}} Direccion • {{branch.Direccion}}</p>
+            <p class="order-subtitle">{{branch.status}}</p>
           </div>
           <mat-chip-set>
-            <mat-chip [color]="order.statusColor">
-              {{order.status}}
+            <mat-chip [color]="branch.statusColor">
+              {{branch.status}}
             </mat-chip>
           </mat-chip-set>
         </div>
