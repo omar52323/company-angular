@@ -1,0 +1,19 @@
+
+<section class="orders-section">
+    <h2> Sucursal</h2>
+    <mat-card *ngFor="let order of Branches" class="order-card">
+      <mat-card-content>
+        <div class="order-header">
+          <div>
+            <p class="order-title">Sucursal #{{order.id}}</p>
+            <p class="order-subtitle">{{order.Nombre}} Direccion • {{order.Direccion}}</p>
+          </div>
+          <mat-chip-set>
+            <mat-chip [color]="order.statusColor">
+              {{order.status}}
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>

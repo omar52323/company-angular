@@ -1,0 +1,31 @@
+.bottom-nav {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background: white;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    box-shadow: 0 -2px 5px rgba(0,0,0,0.1);
+    z-index: 1000;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0.5rem 0;
+    color: #666;
+    text-decoration: none;
+    font-size: 0.75rem;
+  }
+
+  .active {
+    color: var(--mat-primary-500);
+  }
+
+  mat-icon {
+    font-size: 1.5rem;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
