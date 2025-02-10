@@ -1,20 +1,65 @@
 
 <section class="orders-section">
-    <h2> Sucursal</h2>
-    <mat-card *ngFor="let order of Orders" class="order-card">
-      <mat-card-content>
+  
+  <mat-card   class="status-order-pending" (click)="pendingOrders()">
+    <p [ngClass]="{'weight-font': pendingOrdersActive}">Ordenes Pendientes</p>
+  </mat-card>
+
+  <mat-card   class="status-order-ready" (click)="readyOrders()">
+    <p [ngClass]="{'weight-font': !pendingOrdersActive}">Ordenes Entregadas</p>
+  </mat-card>
+
+  <ng-container *ngIf="!pendingOrdersActive">
+    <mat-card *ngFor="let order of OrdersReady" class="order-card">
+      <mat-card-content >
         <div class="order-header" (click)="onviewDetail(order)">
           <div>
             <p class="order-title">Orden Id {{order.Id}}</p>
             <p class="order-subtitle">Item {{order.item}}  •status {{order.status}}</p>
-            <p class="order-subtitle">{{order.status}}</p>
+            <p class="order-subtitle">Estado orden{{order.status}}</p>
+            <p class="order-subtitle">Fecha Pedido:{{order.FechaPedido}}</p>
+            <p class="order-subtitle">Hora Pedido:{{order.HoraPedido}}</p>
+            <p class="order-subtitle">Fecha Entrega:{{order.FechaEntrega}}</p>
+            <p class="order-subtitle">Hora Entrega:{{order.HoraEntrega}}</p>
+            <p class="order-subtitle">Tiempo Entrega:{{order.tiempoEntrega}}</p>
+
           </div>
           <mat-chip-set>
             <mat-chip [color]="order.statusColor">
               {{order.status}}
             </mat-chip>
+           
           </mat-chip-set>
         </div>
       </mat-card-content>
     </mat-card>
+  </ng-container>
+
+  <ng-container *ngIf="pendingOrdersActive">
+    <mat-card  *ngFor="let order of OrdersPending" class="order-card">
+      <mat-card-content *ngIf="pendingOrdersActive">
+        <div class="order-header" (click)="onviewDetail(order)">
+          <div>
+            <p class="order-title">Orden Id {{order.Id}}</p>
+            <p class="order-subtitle">Item {{order.item}}  •status {{order.status}}</p>
+            <p class="order-subtitle">Estado orden{{order.status}}</p>
+            <p class="order-subtitle">Fecha Pedido:{{order.FechaPedido}}</p>
+            <p class="order-subtitle">Hora Pedido:{{order.HoraPedido}}</p>
+          </div>
+          <mat-chip-set>
+            <mat-chip [color]="order.statusColor">
+              {{order.status}}
+            </mat-chip>
+            <mat-chip class="green-chip" (click)="onDelivered(order)">
+              Entregar
+            </mat-chip>
+            <mat-chip class="red-chip" (click)="onPay(order)">
+              Pagada
+            </mat-chip>
+          </mat-chip-set>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </ng-container>
+
   </section>

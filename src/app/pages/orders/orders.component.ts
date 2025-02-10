@@ -18,8 +18,72 @@ import { Router } from '@angular/router';
   templateUrl: './orders.component.html',
   styleUrl: './orders.component.scss'
 })
-export class OrdersComponent {
-  Orders = [
+export class OrdersComponent implements OnInit {
+  constructor(private router: Router) { }
+  pendingOrdersActive:boolean = true;
+  colorError = 'error';
+  colorSuccess = 'primary';
+  OrdersReady = [
+    { 
+      Id: 1,
+      Nombre: 'el apego',
+      totalVentas: '$18.50',
+      Direccion: 'cra 5 22-33',
+      status: 'Entregada',
+      statusColor: 'primary',
+      item: 'hamburguesa',
+      FechaPedido: '2021-09-01',
+      HoraPedido: '12:00:00',
+      FechaEntrega: '2021-09-01',
+      HoraEntrega: '12:00:00',
+     tiempoEntrega: '00:10:00'
+    
+    },
+    { 
+      Id: 2,
+      Nombre: 'el tesoro',
+      item: 'hamburguesa',
+      totalVentas: '$99.50',
+      Direccion: 'cra 9 22-33',
+      status: 'Entregada',
+      statusColor: 'primary',
+      FechaPedido: '2021-09-01',
+      HoraPedido: '12:00:00',
+      FechaEntrega: '2021-09-01',
+      HoraEntrega: '12:00:00',
+       tiempoEntrega: '00:10:00'
+    },
+    { 
+      Id: 3,
+      Nombre: 'el degenero',
+      item: 'hamburguesa',
+      totalVentas: '$35.75',
+      Direccion: 'cra 9 22-33',
+      status: 'Entregada',
+      statusColor: 'accent',
+      FechaPedido: '2021-09-01 ',
+      HoraPedido: '12:00:00',
+      FechaEntrega: '2021-09-01',
+      HoraEntrega: '12:00:00',
+       tiempoEntrega: '00:10:00'
+    },
+    {
+      Id:4,
+      Nombre: 'el degenero',
+      item: 'hamburguesa',
+      totalVentas: '$35.75',
+      Direccion: 'cra 9 22-33',
+      status: 'Entregada',
+      statusColor: 'accent',
+      FechaPedido: '2021-09-01',
+      HoraPedido: '12:00:00',
+      FechaEntrega: '2021-09-01',
+      HoraEntrega: '12:00:00',
+      tiempoEntrega: '00:10:00'
+    }
+  ];
+
+  OrdersPending = [
     { 
       Id: 1,
       Nombre: 'el apego',
@@ -28,6 +92,10 @@ export class OrdersComponent {
       status: 'Activa',
       statusColor: 'primary',
       item: 'hamburguesa',
+      FechaPedido: '2021-09-01',
+      HoraPedido: '12:00:00',
+      FechaEntrega: '2021-09-01',
+      HoraEntrega: '12:00:00'
     
     },
     { 
@@ -37,7 +105,11 @@ export class OrdersComponent {
       totalVentas: '$99.50',
       Direccion: 'cra 9 22-33',
       status: 'Activa',
-      statusColor: 'primary'
+      statusColor: 'primary',
+      FechaPedido: '2021-09-01',
+      HoraPedido: '12:00:00',
+      FechaEntrega: '2021-09-01',
+      HoraEntrega: '12:00:00'
     },
     { 
       Id: 3,
@@ -46,7 +118,24 @@ export class OrdersComponent {
       totalVentas: '$35.75',
       Direccion: 'cra 9 22-33',
       status: 'Activa',
-      statusColor: 'accent'
+      statusColor: 'accent',
+      FechaPedido: '2021-09-01 ',
+      HoraPedido: '12:00:00',
+      FechaEntrega: '2021-09-01',
+      HoraEntrega: '12:00:00'
+    },
+    {
+      Id:4,
+      Nombre: 'el degenero',
+      item: 'hamburguesa',
+      totalVentas: '$35.75',
+      Direccion: 'cra 9 22-33',
+      status: 'Activa',
+      statusColor: 'accent',
+      FechaPedido: '2021-09-01',
+      HoraPedido: '12:00:00',
+      FechaEntrega: '2021-09-01',
+      HoraEntrega: '12:00:00'
     }
   ];
 
@@ -55,4 +144,23 @@ export class OrdersComponent {
     console.log('Order',order.Id);
   }
 
+
+  pendingOrders(){
+    this.pendingOrdersActive = true;
+  }
+
+  readyOrders(){
+    this.pendingOrdersActive = false; 
+  }
+  ngOnInit(): void {
+      
+  }
+
+  onDelivered(order:any){
+  console.log('entregada',order.Id);
+  }
+
+  onPay(order:any){
+  console.log('pagada',order.Id);
+  }
 }

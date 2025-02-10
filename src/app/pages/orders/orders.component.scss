@@ -56,4 +56,31 @@
         font-size: 0.875rem;
       }
     }
+
+    .status-order-pending{
+      margin-top: 60px;
+      margin-bottom: 20px;
+      align-items: center;
+    }
+    .status-order-ready{
+      margin-top: 20px;
+      margin-bottom: 20px;
+      align-items: center;
+
+    }
+
+    
+  }
+
+  .weight-font{
+    font-weight: 500;
+  }
+
+  .green-chip {
+    background-color: #6da86f !important; /* Verde */
+    color: white !important;
+  }
+  .red-chip {
+    background-color: #ac575e !important; /* Verde */
+    color: white !important;
   }

@@ -56,4 +56,8 @@ export class BranchesComponent {
     console.log('Branch',branch.Id);
     this.router.navigate(['/admin/orders']);
   }
+  onProducts(branch: any) {
+    console.log('Branch',branch.Id);
+    //this.router.navigate(['/admin/products']);
+  }
 }
