@@ -6,43 +6,55 @@ export const routes: Routes = [
     //admin/:company
     path: 'admin',
     loadComponent: () => 
-      import('./pages/dashboard/dashboard.component').then(m => m.DashboardComponent)
+      import('./pages/admin/dashboard/dashboard.component').then(m => m.DashboardComponent)
   },
   {
     //admin/:company/branches
     path: 'admin/branches',
     loadComponent: () => 
-      import('./pages/branches/branches.component').then(m => m.BranchesComponent)
+      import('./pages/admin/branches/branches.component').then(m => m.BranchesComponent)
   },
   {
     //admin/:company/branches/:branch/orders
     path: 'admin/orders',
     loadComponent: () => 
-      import('./pages/orders/orders.component').then(m => m.OrdersComponent)
+      import('./pages/admin/orders/orders.component').then(m => m.OrdersComponent)
   },
   {
     //admin/:company/branches/:branch/inventory
     //admin/:company/branches/:branch/inventory/:product
     path: 'admin/inventory',
     loadComponent: () => 
-      import('./pages/inventory/inventory.component').then(m => m.InventoryComponent)
+      import('./pages/admin/inventory/inventory.component').then(m => m.InventoryComponent)
   },
   {
     //admin/:company/branches/:branch/reports
     path: 'admin/reports',
     loadComponent: () => 
-      import('./pages/reports/reports.component').then(m => m.ReportsComponent)
+      import('./pages/admin/reports/reports.component').then(m => m.ReportsComponent)
   },
   {
     //admin/:company/branches/:branch/settings
     path: 'admin/settings',
     loadComponent: () => 
-      import('./pages/settings/settings.component').then(m => m.SettingsComponent)
+      import('./pages/admin/settings/settings.component').then(m => m.SettingsComponent)
   },
   {
    path: 'admin/products',
     loadComponent: () => 
-        import('./pages/products/products.component').then(m => m.ProductsComponent)
+        import('./pages/admin/products/products.component').then(m => m.ProductsComponent)
 
+  },
+  {
+  path: 'admin/productsList',
+    loadComponent: () => 
+        import('./pages/admin/products-list/products-list.component').then(m => m.ProductsListComponent)
+
+  },
+  {
+    //clients/:company/branches/:branch/orders
+    path:'clients/orders',
+    loadComponent: () =>
+      import('./pages/clients/order-request/order-request.component').then(m => m.OrderRequestComponent)
   }
 ];

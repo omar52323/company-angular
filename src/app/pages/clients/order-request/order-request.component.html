@@ -1,0 +1,45 @@
+
+<form class="customer-form" #customerForm="ngForm">
+    <mat-form-field appearance="outline">
+      <mat-label>Nombre del Cliente</mat-label>
+      <input matInput type="text" name="customerName" [(ngModel)]="customerName" required>
+    </mat-form-field>
+  
+    <mat-form-field appearance="outline">
+      <mat-label>Celular</mat-label>
+      <input matInput type="tel" name="customerPhone" [(ngModel)]="customerPhone" required>
+    </mat-form-field>
+  </form>
+<section class="products-section">
+    <h2>Lista de Productos</h2>
+  
+    <div class="product-list">
+      <mat-card *ngFor="let product of products" class="product-card">
+        <mat-card-content>
+          <div class="product-info">
+            <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />
+            <div class="product-details">
+              <p class="product-name">{{ product.name }}</p>
+              <p class="product-price">$ {{ product.price | number }}</p>
+            </div>
+          </div>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-button color="primary" (click)="addToCart(product)">Agregar</button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  
+    <div class="cart-section" *ngIf="cart.length > 0">
+      <h3>Carrito</h3>
+      <div class="cart-item" *ngFor="let item of cart">
+        <p>{{ item.name }} - {{ item.quantity }} x ${{ item.price | number }}</p>
+        <button mat-icon-button color="warn" (click)="removeFromCart(item)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+      <h3>Total: ${{ getTotal() | number }}</h3>
+      <button mat-raised-button color="accent" (click)="saveOrder()">Guardar Pedido</button>
+    </div>
+  </section>
+  

@@ -58,6 +58,10 @@ export class BranchesComponent {
   }
   onProducts(branch: any) {
     console.log('Branch',branch.Id);
-    //this.router.navigate(['/admin/products']);
+    this.router.navigate(['/admin/products']);
+  }
+
+  getQrCode(branch: any) {
+    
   }
 }

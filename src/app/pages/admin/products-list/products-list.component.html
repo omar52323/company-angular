@@ -1,0 +1,27 @@
+<section class="orders-section">
+    <h2>Productos Sucursal</h2>
+    <mat-card *ngFor="let product of Productos" class="order-card">
+      <mat-card-content>
+        <div class="order-header">
+          <!-- Información del producto -->
+          <div class="order-info">
+            <p class="order-title">ID Producto #{{product.Id}}</p>
+            <p class="order-subtitle">Nombre: {{product.Nombre}}</p>
+            <p class="order-subtitle">Precio: {{product.Precio}}</p>
+            <p class="order-subtitle">Estado: {{product.status}}</p>
+            <mat-chip-set>
+              <mat-chip [color]="product.statusColor">
+                {{ product.status }}
+              </mat-chip>
+            </mat-chip-set>
+          </div>
+          
+          <!-- Imagen del producto -->
+          <div class="order-image">
+            <img [src]="product.imageUrl" alt="{{product.Nombre}}" />
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+  

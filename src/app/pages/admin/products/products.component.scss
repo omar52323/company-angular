@@ -1,0 +1,63 @@
+.dashboard-container {
+    padding: 1rem;
+    margin-top: 3.5rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .stat-card {
+    .stat-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 0.5rem;
+    }
+
+    .stat-content {
+      .stat-label {
+        color: var(--mat-gray-500);
+        font-size: 0.875rem;
+      }
+
+      .stat-value {
+        font-size: 1.5rem;
+        font-weight: 500;
+      }
+    }
+  }
+
+  .orders-section {
+    h2 {
+      margin-bottom: 1rem;
+      font-size: 1.25rem;
+      font-weight: 500;
+    }
+
+    .order-card {
+      margin-bottom: 1rem;
+
+      .order-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .order-title {
+        font-weight: 500;
+      }
+
+      .order-subtitle {
+        color: var(--mat-gray-500);
+        font-size: 0.875rem;
+      }
+    }
+
+    .action-chip{
+      margin-left: 10px;
+    }
+  }

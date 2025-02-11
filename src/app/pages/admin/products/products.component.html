@@ -1,6 +1,5 @@
-
 <section class="orders-section">
-    <h2> Sucursal</h2>
+    <h2> Productos Sucursal</h2>
     <mat-card *ngFor="let branch of Branches" class="order-card">
       <mat-card-content>
         <div class="order-header" >
@@ -8,12 +7,11 @@
             <p class="order-title">Sucursal #{{branch.Id}}</p>
             <p class="order-subtitle">{{branch.Nombre}} Direccion • {{branch.Direccion}}</p>
             <p class="order-subtitle">{{branch.status}}</p>
-            <mat-chip (click)="onBranch(branch)" class="action-chip"> 
-              Ordenes
-            </mat-chip>
+           
             <mat-chip (click)="onProducts(branch)"class="action-chip"> 
-              Productos
+              Ver Productos
             </mat-chip>
+            
           </div>
           <mat-chip-set>
             <mat-chip [color]="branch.statusColor">
