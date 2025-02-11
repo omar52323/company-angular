@@ -77,10 +77,16 @@
   }
 
   .green-chip {
-    background-color: #6da86f !important; /* Verde */
+    border-width: 1px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #6da86f !important; /* Verde */
     color: white !important;
   }
   .red-chip {
-    background-color: #ac575e !important; /* Verde */
+    border-width: 1px;
+    border-radius: 10px;
+    border-style: solid;
+    border-color: #ac575e !important; /* Verde */
     color: white !important;
   }

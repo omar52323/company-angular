@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { Router } from '@angular/router';
+import Swal from 'sweetalert2'
 @Component({
   selector: 'app-orders',
   imports: [
@@ -31,7 +32,12 @@ export class OrdersComponent implements OnInit {
       Direccion: 'cra 5 22-33',
       status: 'Entregada',
       statusColor: 'primary',
-      item: 'hamburguesa',
+      item: [
+        {nombre: 'hamburguesa', cantidad: 2,precio: 10.50},
+        {nombre: 'perro', cantidad: 1,precio: 5.75},
+        {nombre: 'gaseosa', cantidad: 1,precio: 5.75}
+
+      ],
       FechaPedido: '2021-09-01',
       HoraPedido: '12:00:00',
       FechaEntrega: '2021-09-01',
@@ -42,7 +48,12 @@ export class OrdersComponent implements OnInit {
     { 
       Id: 2,
       Nombre: 'el tesoro',
-      item: 'hamburguesa',
+      item: [
+        {nombre: 'hamburguesa', cantidad: 2,precio: 10.50},
+        {nombre: 'perro', cantidad: 1,precio: 5.75},
+        {nombre: 'gaseosa', cantidad: 1,precio: 5.75}
+
+      ],
       totalVentas: '$99.50',
       Direccion: 'cra 9 22-33',
       status: 'Entregada',
@@ -56,7 +67,12 @@ export class OrdersComponent implements OnInit {
     { 
       Id: 3,
       Nombre: 'el degenero',
-      item: 'hamburguesa',
+      item: [
+        {nombre: 'hamburguesa', cantidad: 2,precio: 10.50},
+        {nombre: 'perro', cantidad: 1,precio: 5.75},
+        {nombre: 'gaseosa', cantidad: 1,precio: 5.75}
+
+      ],
       totalVentas: '$35.75',
       Direccion: 'cra 9 22-33',
       status: 'Entregada',
@@ -70,7 +86,12 @@ export class OrdersComponent implements OnInit {
     {
       Id:4,
       Nombre: 'el degenero',
-      item: 'hamburguesa',
+      item: [
+        {nombre: 'hamburguesa', cantidad: 2,precio: 10.50},
+        {nombre: 'perro', cantidad: 1,precio: 5.75},
+        {nombre: 'gaseosa', cantidad: 1,precio: 5.75}
+
+      ],
       totalVentas: '$35.75',
       Direccion: 'cra 9 22-33',
       status: 'Entregada',
@@ -91,7 +112,12 @@ export class OrdersComponent implements OnInit {
       Direccion: 'cra 5 22-33',
       status: 'Activa',
       statusColor: 'primary',
-      item: 'hamburguesa',
+      item: [
+        {nombre: 'hamburguesa', cantidad: 2,precio: 10.50},
+        {nombre: 'perro', cantidad: 1,precio: 5.75},
+        {nombre: 'gaseosa', cantidad: 1,precio: 5.75}
+
+      ],
       FechaPedido: '2021-09-01',
       HoraPedido: '12:00:00',
       FechaEntrega: '2021-09-01',
@@ -101,7 +127,12 @@ export class OrdersComponent implements OnInit {
     { 
       Id: 2,
       Nombre: 'el tesoro',
-      item: 'hamburguesa',
+      item: [
+        {nombre: 'hamburguesa', cantidad: 2,precio: 10.50},
+        {nombre: 'perro', cantidad: 1,precio: 5.75},
+        {nombre: 'gaseosa', cantidad: 1,precio: 5.75}
+
+      ],
       totalVentas: '$99.50',
       Direccion: 'cra 9 22-33',
       status: 'Activa',
@@ -114,7 +145,12 @@ export class OrdersComponent implements OnInit {
     { 
       Id: 3,
       Nombre: 'el degenero',
-      item: 'hamburguesa',
+      item: [
+        {nombre: 'hamburguesa', cantidad: 2,precio: 10.50},
+        {nombre: 'perro', cantidad: 1,precio: 5.75},
+        {nombre: 'gaseosa', cantidad: 1,precio: 5.75}
+
+      ],
       totalVentas: '$35.75',
       Direccion: 'cra 9 22-33',
       status: 'Activa',
@@ -127,7 +163,12 @@ export class OrdersComponent implements OnInit {
     {
       Id:4,
       Nombre: 'el degenero',
-      item: 'hamburguesa',
+      item: [
+        {nombre: 'hamburguesa', cantidad: 2,precio: 10.50},
+        {nombre: 'perro', cantidad: 1,precio: 5.75},
+        {nombre: 'gaseosa', cantidad: 1,precio: 5.75}
+
+      ],
       totalVentas: '$35.75',
       Direccion: 'cra 9 22-33',
       status: 'Activa',
@@ -157,10 +198,38 @@ export class OrdersComponent implements OnInit {
   }
 
   onDelivered(order:any){
-  console.log('entregada',order.Id);
+      Swal.fire({
+        title: "Esta seguro que desea entregar ?",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "SI",
+        denyButtonText: `NO`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.OrdersPending= this.OrdersPending.filter((item) => item.Id !== order.Id);
+          Swal.fire("Entregado!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("No se entregó", "", "info");
+        }
+      });
   }
 
   onPay(order:any){
-  console.log('pagada',order.Id);
+      Swal.fire({
+        title: "Esta seguro que desea Pagar ?",
+        showDenyButton: true,
+        showCancelButton: false,
+        confirmButtonText: "SI",
+        denyButtonText: `NO`
+      }).then((result) => {
+        /* Read more about isConfirmed, isDenied below */
+        if (result.isConfirmed) {
+          this.OrdersPending= this.OrdersPending.filter((item) => item.Id !== order.Id);
+          Swal.fire("Pagada!", "", "success");
+        } else if (result.isDenied) {
+          Swal.fire("No se pagó", "", "info");
+        }
+      });
   }
 }

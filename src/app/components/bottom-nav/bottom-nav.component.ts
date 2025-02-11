@@ -19,7 +19,7 @@ export class BottomNavComponent {
     { path: '/admin/branches', icon: 'store', label: 'Sucursales' },
     { path: '/admin/orders', icon: 'shopping_bag', label: 'Ordernes' },
     {path: '/admin/products', icon: 'category', label: 'Productos'},
-    { path: '/admin/inventory', icon: 'inventory', label: 'Inventario' },
+    //{ path: '/admin/inventory', icon: 'inventory', label: 'Inventario' },
     { path: '/admin/reports', icon: 'bar_chart', label: 'Reportes' },
     { path: '/admin/settings', icon: 'settings', label: 'Configuracion' }
 
