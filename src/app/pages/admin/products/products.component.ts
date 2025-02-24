@@ -75,4 +75,8 @@ export class ProductsComponent {
 
     
   }
+
+  GeneralProducts(){
+    this.router.navigate(['/admin/products-admin']);
+  }
 }

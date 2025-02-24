@@ -27,3 +27,17 @@
       </mat-card-content>
     </mat-card>
   </section>
+
+  <button mat-raised-button color="primary" (click)="NewBrand()">
+    Crear Sucursal
+  </button>
+<!-- Add this where you want to show the modal -->
+<div *ngIf="showQrCode" class="qr-modal" (click)="closeQrCode()">
+  <div class="qr-container">
+    <qrcode 
+      [qrdata]="selectedBranchQr" 
+      [width]="256" 
+      [errorCorrectionLevel]="'M'">
+    </qrcode>
+  </div>
+</div>

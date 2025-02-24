@@ -1,0 +1,53 @@
+<form [formGroup]="companyForm" (ngSubmit)="onSubmit()" class="company-form">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Crear Nueva Compañia</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre Compañia</mat-label>
+        <input matInput formControlName="name" required>
+        <mat-error *ngIf="companyForm.get('name')?.hasError('required')">
+          Company name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Direccion Principal</mat-label>
+        <input matInput formControlName="address" required>
+        <mat-error *ngIf="companyForm.get('address')?.hasError('required')">
+          Address is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Nombre Administrador</mat-label>
+        <input matInput formControlName="adminName" required>
+        <mat-error *ngIf="companyForm.get('adminName')?.hasError('required')">
+          Administrator name is required
+        </mat-error>
+      </mat-form-field>
+
+      <!--<mat-form-field appearance="fill" class="full-width">
+        <mat-label>Company URL</mat-label>
+        <input matInput formControlName="url" required>
+        <mat-error *ngIf="companyForm.get('url')?.hasError('required')">
+          Company URL is required
+        </mat-error>
+      </mat-form-field>-->
+
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Descripcion</mat-label>
+        <textarea matInput formControlName="description" rows="4"></textarea>
+      </mat-form-field>
+    </mat-card-content>
+
+    <mat-card-actions align="end">
+      <button mat-button type="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!companyForm.valid">
+        Crear Compañia
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</form>

@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
-
+import { MatSelectModule } from '@angular/material/select';  // Add this import
 @Component({
   selector: 'app-products-admin',
   imports: [
@@ -19,7 +19,8 @@ import { MatInputModule } from '@angular/material/input';
     MatChipsModule,
     ReactiveFormsModule,
     MatFormFieldModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule
   ],
   standalone: true,
   templateUrl: './products-admin.component.html',
@@ -34,6 +35,7 @@ export class ProductsAdminComponent {
       nombre: ['', Validators.required],
       precio: ['', [Validators.required, Validators.min(0)]],
       imageUrl: ['', Validators.required],
+      status: ['', Validators.required]  // Add this line
     });
   }
 
@@ -58,7 +60,24 @@ export class ProductsAdminComponent {
       Id: 1,
       Nombre: 'Hamburguesa',
       Precio: '$18.50',
-      status: 'Activo',
+      status: [ { 
+        Id: 1,
+        Nombre: 'el apego',
+        totalVentas: '$18.50',
+        Direccion: 'cra 5 22-33',
+        status: 'Activo',
+        statusColor: 'primary'
+      
+      },
+      { 
+        Id: 2,
+        Nombre: 'el tesoro',
+        totalVentas: '$99.50',
+        Direccion: 'cra 9 22-33',
+        status: 'Activo',
+        statusColor: 'primary'
+      }
+    ],
       statusColor: 'primary',
       imageUrl:'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg'
     
@@ -67,7 +86,24 @@ export class ProductsAdminComponent {
       Id: 2,
       Nombre: 'Perro',
       Precio: '$99.50',
-      status: 'Activo',
+      status: [ { 
+        Id: 1,
+        Nombre: 'el apego',
+        totalVentas: '$18.50',
+        Direccion: 'cra 5 22-33',
+        status: 'Activo',
+        statusColor: 'primary'
+      
+      },
+      { 
+        Id: 2,
+        Nombre: 'el tesoro',
+        totalVentas: '$99.50',
+        Direccion: 'cra 9 22-33',
+        status: 'Activo',
+        statusColor: 'primary'
+      }
+    ],
       statusColor: 'primary' ,
       imageUrl:'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg'
     },
@@ -75,7 +111,24 @@ export class ProductsAdminComponent {
       Id: 3,
       Nombre: 'Papas',
       Precio: '$35.75',
-      status: 'Activo',
+      status: [ { 
+        Id: 1,
+        Nombre: 'el apego',
+        totalVentas: '$18.50',
+        Direccion: 'cra 5 22-33',
+        status: 'Activo',
+        statusColor: 'primary'
+      
+      },
+      { 
+        Id: 2,
+        Nombre: 'el tesoro',
+        totalVentas: '$99.50',
+        Direccion: 'cra 9 22-33',
+        status: 'Activo',
+        statusColor: 'primary'
+      }
+    ],
       statusColor: 'accent',
       imageUrl:'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg'
     }

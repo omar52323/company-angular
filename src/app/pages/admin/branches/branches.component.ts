@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { Router } from '@angular/router';
-
+import { QRCodeModule } from 'angularx-qrcode'; 
 @Component({
   selector: 'app-branches',
   imports: [
@@ -13,14 +13,16 @@ import { Router } from '@angular/router';
       MatCardModule,
       MatIconModule,
       MatButtonModule,
-      MatChipsModule
+      MatChipsModule,
+      QRCodeModule
     ],
     standalone: true,
   templateUrl: './branches.component.html',
   styleUrl: './branches.component.scss'
 })
 export class BranchesComponent {
-
+  showQrCode: boolean = false;
+  selectedBranchQr: string = '';
   constructor(private router: Router) { }
 
   Branches = [
@@ -30,7 +32,8 @@ export class BranchesComponent {
       totalVentas: '$18.50',
       Direccion: 'cra 5 22-33',
       status: 'Activa',
-      statusColor: 'primary'
+      statusColor: 'primary',
+      linkRequest:'http:URL_ADDRESS:4200/clients/orders/19999/19999'
     
     },
     { 
@@ -39,7 +42,8 @@ export class BranchesComponent {
       totalVentas: '$99.50',
       Direccion: 'cra 9 22-33',
       status: 'Activa',
-      statusColor: 'primary'
+      statusColor: 'primary',
+      linkRequest:'http:URL_ADDRESS:4200/clients/orders/19999/19999'
     },
     { 
       Id: 3,
@@ -47,7 +51,8 @@ export class BranchesComponent {
       totalVentas: '$35.75',
       Direccion: 'cra 9 22-33',
       status: 'Activa',
-      statusColor: 'accent'
+      statusColor: 'accent',
+      linkRequest:'http:URL_ADDRESS:4200/clients/orders/19999/19999'
     }
   ];
 
@@ -61,7 +66,17 @@ export class BranchesComponent {
     this.router.navigate(['/admin/products']);
   }
 
-  getQrCode(branch: any) {
-    
+
+
+getQrCode(branch: any) {
+  this.selectedBranchQr = branch.linkRequest;
+  this.showQrCode = true;
+}
+
+closeQrCode() {
+  this.showQrCode = false;
+}
+  NewBrand() {
+    this.router.navigate(['admin/new-brand']);
   }
 }

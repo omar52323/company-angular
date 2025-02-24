@@ -19,6 +19,14 @@
           <input matInput formControlName="imageUrl" placeholder="URL de la imagen">
         </mat-form-field>
 
+        <mat-form-field appearance="outline" class="form-field-spacing">
+          <mat-label>Estado</mat-label>
+          <mat-select formControlName="status">
+            <mat-option value="activo">Activo</mat-option>
+            <mat-option value="inactivo">Inactivo</mat-option>
+          </mat-select>
+        </mat-form-field>
+
         <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">
           Crear Producto
         </button>
@@ -30,7 +38,7 @@
 <!--productos lista creados para la compañia-->
 
 <section class="orders-section">
-    <h2>Productos Sucursal</h2>
+    <h2>Lista General Productos</h2>
     <mat-card *ngFor="let product of Productos" class="order-card">
       <mat-card-content>
         <div class="order-header">
@@ -39,10 +47,10 @@
             <p class="order-title">ID Producto #{{product.Id}}</p>
             <p class="order-subtitle">Nombre: {{product.Nombre}}</p>
             <p class="order-subtitle">Precio: {{product.Precio}}</p>
-            <p class="order-subtitle">Estado: {{product.status}}</p>
+           
             <mat-chip-set>
-              <mat-chip [color]="product.statusColor">
-                {{ product.status }}
+              <mat-chip *ngFor="let status of product.status" [color]="product.statusColor">
+                {{ status.Nombre }} - {{ status.status }}
               </mat-chip>
             </mat-chip-set>
           </div>
