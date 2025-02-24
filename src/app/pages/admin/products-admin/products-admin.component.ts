@@ -21,6 +21,7 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule
   ],
+  standalone: true,
   templateUrl: './products-admin.component.html',
   styleUrl: './products-admin.component.scss'
 })
