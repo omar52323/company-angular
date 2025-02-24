@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
@@ -7,6 +8,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { Router } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 interface Product {
   id: number;
@@ -21,6 +23,7 @@ interface CartItem extends Product {
 @Component({
   selector: 'app-order-request',
    imports: [
+    ReactiveFormsModule,
     MatFormFieldModule,
     FormsModule,
      CommonModule,
@@ -37,6 +40,7 @@ interface CartItem extends Product {
 
 
 export class OrderRequestComponent {
+  customerForm: FormGroup= new FormGroup({});
   customerName:string="";
   customerPhone:string="";
   products: Product[] = [
@@ -44,7 +48,18 @@ export class OrderRequestComponent {
     { id: 2, name: 'Producto B', price: 15, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg' },
     { id: 3, name: 'Producto C', price: 20, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg' }
   ];
-
+  constructor(private fb: FormBuilder) {
+    this.initForm();
+  }
+  private initForm(): void {
+    this.customerForm = this.fb.group({
+      name: ['', [Validators.required, Validators.minLength(3)]],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]],
+      email: ['', [Validators.email]],
+      address: ['']
+    });
+  }
+ 
   cart: CartItem[] = [];
 
   addToCart(product: Product) {

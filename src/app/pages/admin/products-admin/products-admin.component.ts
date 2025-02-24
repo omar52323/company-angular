@@ -10,7 +10,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 
 @Component({
-  selector: 'app-products',
+  selector: 'app-products-admin',
   imports: [
     CommonModule,
     MatCardModule,
@@ -21,11 +21,10 @@ import { MatInputModule } from '@angular/material/input';
     MatFormFieldModule,
     MatInputModule
   ],
-  standalone: true,
-  templateUrl: './products.component.html',
-  styleUrl: './products.component.scss'
+  templateUrl: './products-admin.component.html',
+  styleUrl: './products-admin.component.scss'
 })
-export class ProductsComponent {
+export class ProductsAdminComponent {
   productForm: FormGroup;
 
   constructor(private router: Router, private fb: FormBuilder) {
@@ -37,42 +36,47 @@ export class ProductsComponent {
     });
   }
 
+  onSubmitProduct(): void {
+    if (this.productForm.valid) {
+      const newProduct = {
+        Id: 1,
+        Nombre: this.productForm.value.nombre,
+        totalVentas: `$${this.productForm.value.precio}`,
+        Direccion: 'Nueva ubicación',
+        status: 'Activo',
+        statusColor: 'primary'
+      };
 
-
-  
-  Branches = [
-    { 
-      Id: 1,
-      Nombre: 'el apego',
-      totalVentas: '$18.50',
-      Direccion: 'cra 5 22-33',
-      status: 'Activa',
-      statusColor: 'primary'
-    
-    },
-    { 
-      Id: 2,
-      Nombre: 'el tesoro',
-      totalVentas: '$99.50',
-      Direccion: 'cra 9 22-33',
-      status: 'Activa',
-      statusColor: 'primary'
-    },
-    { 
-      Id: 3,
-      Nombre: 'el degenero',
-      totalVentas: '$35.75',
-      Direccion: 'cra 9 22-33',
-      status: 'Activa',
-      statusColor: 'accent'
+     
+      this.productForm.reset();
     }
-  ];
-
-
-  onProducts(branch: any) {
-
-    this.router.navigate(['/admin/productsList']);
-
-    
   }
+  Productos=[
+
+    {
+      Id: 1,
+      Nombre: 'Hamburguesa',
+      Precio: '$18.50',
+      status: 'Activo',
+      statusColor: 'primary',
+      imageUrl:'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg'
+    
+    },
+    {
+      Id: 2,
+      Nombre: 'Perro',
+      Precio: '$99.50',
+      status: 'Activo',
+      statusColor: 'primary' ,
+      imageUrl:'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg'
+    },
+    {
+      Id: 3,
+      Nombre: 'Papas',
+      Precio: '$35.75',
+      status: 'Activo',
+      statusColor: 'accent',
+      imageUrl:'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg'
+    }
+  ]
 }

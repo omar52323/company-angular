@@ -1,0 +1,66 @@
+<section class="create-product-section">
+  <h2>Crear Nuevo Producto</h2>
+  <mat-card>
+    <mat-card-content>
+      <form [formGroup]="productForm" (ngSubmit)="onSubmitProduct()" class="form-with-spacing">
+        <mat-form-field appearance="outline" class="form-field-spacing">
+          <mat-label>Nombre del Producto</mat-label>
+          <input matInput formControlName="nombre" placeholder="Nombre del producto">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field-spacing">
+          <mat-label>Precio</mat-label>
+          <input matInput type="number" formControlName="precio" placeholder="Precio">
+          <span matPrefix>$&nbsp;</span>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="form-field-spacing">
+          <mat-label>URL de la imagen</mat-label>
+          <input matInput formControlName="imageUrl" placeholder="URL de la imagen">
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">
+          Crear Producto
+        </button>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</section>
+
+<!--productos lista creados para la compañia-->
+
+<section class="orders-section">
+    <h2>Productos Sucursal</h2>
+    <mat-card *ngFor="let product of Productos" class="order-card">
+      <mat-card-content>
+        <div class="order-header">
+          <!-- Información del producto -->
+          <div class="order-info">
+            <p class="order-title">ID Producto #{{product.Id}}</p>
+            <p class="order-subtitle">Nombre: {{product.Nombre}}</p>
+            <p class="order-subtitle">Precio: {{product.Precio}}</p>
+            <p class="order-subtitle">Estado: {{product.status}}</p>
+            <mat-chip-set>
+              <mat-chip [color]="product.statusColor">
+                {{ product.status }}
+              </mat-chip>
+            </mat-chip-set>
+          </div>
+          
+          <!-- Imagen del producto -->
+          <div class="order-image">
+            <img [src]="product.imageUrl" alt="{{product.Nombre}}" />
+          </div>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </section>
+  
+
+
+
+
+
+
+
+

@@ -1,15 +1,63 @@
+<div class="form-container mat-elevation-z4">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>
+        <h2>Información del Cliente</h2>
+      </mat-card-title>
+    </mat-card-header>
+    
+    <mat-card-content>
+      <form class="customer-form" [formGroup]="customerForm" >
+        <div class="form-grid">
+          <mat-form-field appearance="outline">
+            <mat-label>Nombre del Cliente</mat-label>
+            <input
+              matInput
+              type="text"
+              id="customerName"
+              name="customerName"
+              formControlName="phone"
+              required
+              placeholder="Ingrese el nombre completo"
+            />
+            <mat-icon matPrefix>person</mat-icon>
+            <mat-error *ngIf="customerForm.get('name')?.invalid && customerForm.get('name')?.touched">
+              El nombre es requerido
+            </mat-error>
+          </mat-form-field>
 
-<form class="customer-form" #customerForm="ngForm">
-    <mat-form-field appearance="outline">
-      <mat-label>Nombre del Cliente</mat-label>
-      <input matInput type="text" name="customerName" [(ngModel)]="customerName" required>
-    </mat-form-field>
-  
-    <mat-form-field appearance="outline">
-      <mat-label>Celular</mat-label>
-      <input matInput type="tel" name="customerPhone" [(ngModel)]="customerPhone" required>
-    </mat-form-field>
-  </form>
+          <mat-form-field appearance="outline">
+            <mat-label>Celular</mat-label>
+            <input
+              matInput
+              type="tel"
+              id="customerPhone"
+              placeholder="Ej: 3001234567"
+              formControlName="phone"
+              required
+            />
+            <mat-icon matPrefix>phone</mat-icon>
+            <mat-error *ngIf="customerForm.get('phone')?.invalid && customerForm.get('phone')?.touched">
+              Ingrese un número de teléfono válido
+            </mat-error>
+          </mat-form-field>
+        </div>
+
+        <!--<div class="form-actions">
+          <button mat-raised-button color="primary" type="submit" [disabled]="!customerForm.valid">
+            <mat-icon>save</mat-icon>
+            Guardar
+          </button>
+          <button mat-button type="button" color="warn">
+            <mat-icon>cancel</mat-icon>
+            Cancelar
+          </button>
+        </div>-->
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
 <section class="products-section">
     <h2>Lista de Productos</h2>
   
