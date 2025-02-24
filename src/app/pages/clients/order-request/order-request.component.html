@@ -7,7 +7,7 @@
     </mat-card-header>
     
     <mat-card-content>
-      <form class="customer-form" [formGroup]="customerForm" >
+      <form class="customer-form" [formGroup]="customerForm">
         <div class="form-grid">
           <mat-form-field appearance="outline">
             <mat-label>Nombre del Cliente</mat-label>
@@ -16,7 +16,7 @@
               type="text"
               id="customerName"
               name="customerName"
-              formControlName="phone"
+              formControlName="name"
               required
               placeholder="Ingrese el nombre completo"
             />
@@ -42,17 +42,6 @@
             </mat-error>
           </mat-form-field>
         </div>
-
-        <!--<div class="form-actions">
-          <button mat-raised-button color="primary" type="submit" [disabled]="!customerForm.valid">
-            <mat-icon>save</mat-icon>
-            Guardar
-          </button>
-          <button mat-button type="button" color="warn">
-            <mat-icon>cancel</mat-icon>
-            Cancelar
-          </button>
-        </div>-->
       </form>
     </mat-card-content>
   </mat-card>

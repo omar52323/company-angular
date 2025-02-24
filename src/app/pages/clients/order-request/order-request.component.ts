@@ -1,15 +1,11 @@
 import { Component } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { MatFormFieldModule } from '@angular/material/form-field';
 import { CommonModule } from '@angular/common';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { MatChipsModule } from '@angular/material/chips';
-import { Router } from '@angular/router';
-import { ReactiveFormsModule } from '@angular/forms';
-
 interface Product {
   id: number;
   name: string;
@@ -22,34 +18,27 @@ interface CartItem extends Product {
 }
 @Component({
   selector: 'app-order-request',
-   imports: [
+  standalone: true,
+  imports: [
+    CommonModule,
     ReactiveFormsModule,
+    MatCardModule,
     MatFormFieldModule,
-    FormsModule,
-     CommonModule,
-     MatCardModule,
-     MatIconModule,
-     MatButtonModule,
-     MatChipsModule
-   ],
-   standalone: true,
+    MatInputModule,
+    MatIconModule,
+    MatButtonModule
+  ],
   templateUrl: './order-request.component.html',
   styleUrl: './order-request.component.scss'
 })
-
-
-
 export class OrderRequestComponent {
-  customerForm: FormGroup= new FormGroup({});
-  customerName:string="";
-  customerPhone:string="";
-  products: Product[] = [
-    { id: 1, name: 'Producto A', price: 10, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg' },
-    { id: 2, name: 'Producto B', price: 15, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg' },
-    { id: 3, name: 'Producto C', price: 20, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg' }
-  ];
+  customerForm: FormGroup;
+
   constructor(private fb: FormBuilder) {
-    this.initForm();
+    this.customerForm = this.fb.group({
+      name: ['', Validators.required],
+      phone: ['', [Validators.required, Validators.pattern('^[0-9]{10}$')]]
+    });
   }
   private initForm(): void {
     this.customerForm = this.fb.group({
@@ -59,7 +48,11 @@ export class OrderRequestComponent {
       address: ['']
     });
   }
- 
+  products: Product[] = [
+    { id: 1, name: 'Producto A', price: 10, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg' },
+    { id: 2, name: 'Producto B', price: 15, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg' },
+    { id: 3, name: 'Producto C', price: 20, imageUrl: 'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg' }
+  ];
   cart: CartItem[] = [];
 
   addToCart(product: Product) {
