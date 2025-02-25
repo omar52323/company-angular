@@ -1,0 +1,40 @@
+<div class="login-container">
+  <mat-card>
+    <mat-card-header>
+      <mat-card-title>Login</mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+        <mat-form-field appearance="fill">
+          <mat-label>Nombre Usuario</mat-label>
+          <input matInput formControlName="username" required>
+          <mat-error *ngIf="loginForm.get('username')?.hasError('required')">
+            Usuario es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <mat-form-field appearance="fill">
+          <mat-label>Password</mat-label>
+          <input matInput type="password" formControlName="password" required>
+          <mat-error *ngIf="loginForm.get('password')?.hasError('required')">
+            Password es requerido
+          </mat-error>
+        </mat-form-field>
+
+        <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+          Login
+        </button>
+        
+        <div class="register-link">
+          <button mat-button color="accent" type="button" (click)="goToRegister()">
+            ¿No tienes cuenta? Regístrate
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>
+
+
+

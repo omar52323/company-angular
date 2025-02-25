@@ -1,0 +1,48 @@
+.register-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    min-height: 100vh;
+  }
+  
+  mat-card {
+    max-width: 400px;
+    width: 100%;
+  }
+  
+  .form-field-container {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin: 20px 0;
+  }
+  
+  .full-width {
+    width: 100%;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  @media (max-width: 599px) {
+    .register-container {
+      padding: 10px;
+    }
+    
+    mat-card {
+      max-width: 100%;
+    }
+  }
+
+  .register-link {
+    margin-top: 16px;
+    text-align: center;
+    
+    button {
+      width: 100%;
+    }
+  }
