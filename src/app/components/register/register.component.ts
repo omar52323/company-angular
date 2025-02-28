@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
+import { ComponentsService } from '../components.service';
 
 @Component({
   selector: 'app-register',
@@ -26,7 +27,8 @@ export class RegisterComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private componentService: ComponentsService
   ) {
     this.registerForm = this.fb.group({
       username: ['', [Validators.required]],
@@ -39,9 +41,24 @@ export class RegisterComponent {
   onSubmit() {
     if (this.registerForm.valid) {
       console.log('Registration form submitted:', this.registerForm.value);
-      // Here you would typically call your registration service
-      // After successful registration, navigate to login
-      this.router.navigate(['/login']);
+
+        var user ={
+          "username": this.registerForm.value.username,
+          "cellphone": this.registerForm.value.phone,
+          "email": this.registerForm.value.email,
+          "password": this.registerForm.value.password,
+        }
+
+      this.componentService.createUser(user).subscribe(
+        (response) => {
+          console.log('User created successfully:', response);
+          this.router.navigate(['/login']);
+        },
+        (error) => {
+          console.error('Error creating user:', error);
+        }
+      );
+      
     }
   }
 
