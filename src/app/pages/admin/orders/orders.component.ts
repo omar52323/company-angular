@@ -24,7 +24,9 @@ export class OrdersComponent implements OnInit {
   pendingOrdersActive:boolean = true;
   colorError = 'error';
   colorSuccess = 'primary';
-  OrdersReady = [
+  public OrdersReady:any[]=[];
+  public OrdersPending:any[]=[];
+  /*OrdersReady = [
     { 
       Id: 1,
       Nombre: 'el apego',
@@ -178,7 +180,7 @@ export class OrdersComponent implements OnInit {
       FechaEntrega: '2021-09-01',
       HoraEntrega: '12:00:00'
     }
-  ];
+  ];*/
 
   onviewDetail(order: any) {
 

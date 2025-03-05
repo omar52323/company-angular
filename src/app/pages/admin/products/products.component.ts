@@ -36,10 +36,11 @@ export class ProductsComponent {
       imageUrl: ['', Validators.required],
     });
   }
+  public Branches:any[]=[];
 
 
 
-  
+  /*
   Branches = [
     { 
       Id: 1,
@@ -66,7 +67,7 @@ export class ProductsComponent {
       status: 'Activa',
       statusColor: 'accent'
     }
-  ];
+  ];*/
 
 
   onProducts(branch: any) {

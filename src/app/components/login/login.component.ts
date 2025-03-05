@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
@@ -21,7 +21,10 @@ import { ComponentsService } from '../components.service';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
+  ngOnInit(): void {
+      sessionStorage.removeItem('nameCompany')
+  }
   loginForm: FormGroup;
 
   constructor(
@@ -49,6 +52,10 @@ export class LoginComponent {
           if(response.id!=0){
             console.log('Login successful:', response);
             sessionStorage.setItem('userId', response.id);
+            sessionStorage.setItem('company',JSON.stringify(response.company))
+            sessionStorage.setItem('nameCompany',response.company[0].name);
+
+            this.ComponentsService.updateCompanyName(response.company[0].name);
             // Redirect to admin dashboard or another page
             this.router.navigate(['/admin']);
           }

@@ -5,6 +5,7 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
+import { NewCompanyComponent } from '../new-company/new-company.component';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,18 +15,28 @@ import { MatChipsModule } from '@angular/material/chips';
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatChipsModule
+    MatChipsModule,
+    NewCompanyComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
   constructor() { }
-
+  companys:any[] = [];
+  public stats:any[] = [];
+  public recentOrders:any[] = [];
   ngOnInit(): void {
-      console.log("init");
+    console.log("init");
+    const companyData = sessionStorage.getItem("company");
+    if (companyData) {
+      this.companys = JSON.parse(companyData);
+      console.log(this.companys,'companys');
+    }
+
+    console.log(this.companys,'companys')
   }
-  stats = [
+ /* stats = [
     { 
       icon: 'trending_up',
       label: 'Ventas del dia',
@@ -78,5 +89,5 @@ export class DashboardComponent implements OnInit {
       status: 'Lista',
       statusColor: 'accent'
     }
-  ];
+  ];*/
 }

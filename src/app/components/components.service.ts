@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { BehaviorSubject,Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
 export default interface UserCreate {
   Id?:number ,
@@ -20,8 +20,14 @@ export default interface UserLogin{
 })
 export class ComponentsService {
   private apiUrl = 'https://localhost:7214/';
-
-  constructor(private http: HttpClient) { }
+  private companyNameSubject = new BehaviorSubject<string>('Company');
+  public companyName$: Observable<string> = this.companyNameSubject.asObservable();
+  constructor(private http: HttpClient) { 
+    const storedName = sessionStorage.getItem('nameCompany');
+    if (storedName) {
+      this.companyNameSubject.next(storedName);
+    }
+  }
 
   createUser(userData: UserCreate): Observable<any> {
     return this.http.post(this.apiUrl+'Company/CreateUser', userData);
@@ -29,6 +35,11 @@ export class ComponentsService {
 
   validateUser(credentials: { Username: string; Password: string }): Observable<any> {
     return this.http.post(this.apiUrl+'Company/ValidateLogin', credentials);
+  }
+
+  updateCompanyName(name: string): void {
+    sessionStorage.setItem('nameCompany', name);
+    this.companyNameSubject.next(name);
   }
 }
 

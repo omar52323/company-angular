@@ -28,7 +28,7 @@ import { MatSelectModule } from '@angular/material/select';  // Add this import
 })
 export class ProductsAdminComponent {
   productForm: FormGroup;
-
+  public Productos: any[] = [];
   constructor(private router: Router, private fb: FormBuilder) {
   
     this.productForm = this.fb.group({
@@ -53,7 +53,7 @@ export class ProductsAdminComponent {
      
       this.productForm.reset();
     }
-  }
+  }/*
   Productos=[
 
     {
@@ -132,5 +132,5 @@ export class ProductsAdminComponent {
       statusColor: 'accent',
       imageUrl:'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg'
     }
-  ]
+  ]*/
 }

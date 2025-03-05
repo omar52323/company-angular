@@ -21,8 +21,8 @@ import { Router } from '@angular/router';
   styleUrl: './products-list.component.scss'
 })
 export class ProductsListComponent {
-
-  Productos=[
+  public Productos: any[] = [];
+  /*Productos=[
 
     {
       Id: 1,
@@ -49,6 +49,6 @@ export class ProductsListComponent {
       statusColor: 'accent',
       imageUrl:'https://cdn.pixabay.com/photo/2021/01/06/07/32/leaf-5893399_1280.jpg'
     }
-  ]
+  ]*/
 
 }
