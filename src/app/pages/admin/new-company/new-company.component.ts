@@ -6,7 +6,8 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
-
+import { AdminService } from '../admin.service';
+import  Company  from '../admin.service';
 @Component({
   selector: 'app-new-company',
   standalone: true,
@@ -26,7 +27,8 @@ export class NewCompanyComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private AdminService: AdminService
   ) {
     this.companyForm = this.fb.group({
       name: ['', Validators.required],
@@ -40,6 +42,17 @@ export class NewCompanyComponent {
   onSubmit() {
     if (this.companyForm.valid) {
       console.log(this.companyForm.value);
+      var company : Company={
+        Name:this.companyForm.controls['name'].value,
+        Description: this.companyForm.controls['description'].value,
+        Direccion_Prinicipal: this.companyForm.controls['address'].value,
+        Nombre_Administrador: this.companyForm.controls['adminName'].value,
+        OwnerId: sessionStorage.getItem('userId') || "",
+      }
+
+      this.AdminService.registerCompany(company).subscribe((res:any)=>{
+        console.log(res);
+      });
       // Here you would typically call a service to save the data
       // After saving, navigate back to the companies list
       this.router.navigate(['/admin/companies']);

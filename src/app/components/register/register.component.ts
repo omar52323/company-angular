@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ComponentsService } from '../components.service';
-
+import UserCreate from '../components.service';
 @Component({
   selector: 'app-register',
   standalone: true,
@@ -42,11 +42,14 @@ export class RegisterComponent {
     if (this.registerForm.valid) {
       console.log('Registration form submitted:', this.registerForm.value);
 
-        var user ={
-          "username": this.registerForm.value.username,
-          "cellphone": this.registerForm.value.phone,
-          "email": this.registerForm.value.email,
-          "password": this.registerForm.value.password,
+      
+
+        var user: any = {
+          Id: 0,
+          username: this.registerForm.value.username,
+          cellphone: this.registerForm.value.phone,
+          email: this.registerForm.value.email,
+          password: this.registerForm.value.password,
         }
 
       this.componentService.createUser(user).subscribe(

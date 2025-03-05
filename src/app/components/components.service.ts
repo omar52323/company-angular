@@ -2,11 +2,17 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
-interface UserCreate {
+export default interface UserCreate {
+  Id?:number ,
   username: string;
-  password: string;
+  password?: string;
   email: string;
   cellphone: string;
+}
+
+export default interface UserLogin{
+  Username: string;
+  Password: string;
 }
 
 @Injectable({
@@ -21,7 +27,8 @@ export class ComponentsService {
     return this.http.post(this.apiUrl+'Company/CreateUser', userData);
   }
 
-  validateUser(credentials: UserCreate): Observable<any> {
-    return this.http.post(this.apiUrl+'Company/ValidateUser', credentials);
+  validateUser(credentials: { Username: string; Password: string }): Observable<any> {
+    return this.http.post(this.apiUrl+'Company/ValidateLogin', credentials);
   }
 }
+
