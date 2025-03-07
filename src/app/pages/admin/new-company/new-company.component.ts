@@ -7,7 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { AdminService } from '../admin.service';
-import  Company  from '../admin.service';
+import { Company } from '../models/models.admin';
 import { ComponentsService } from '../../../components/components.service';
 @Component({
   selector: 'app-new-company',
@@ -58,6 +58,7 @@ export class NewCompanyComponent {
           sessionStorage.setItem('company',JSON.stringify([res]));
           sessionStorage.setItem('nameCompany',res.name);
           this.componentService.updateCompanyName(res.name);
+          sessionStorage.setItem('Id_GUID',res.id_GUID);
           this.router.navigate(['/admin/branches']);
         }
       });

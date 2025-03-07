@@ -7,6 +7,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ComponentsService } from '../components.service';
+import { UserLogin } from '../models/models.components';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -41,7 +42,7 @@ export class LoginComponent implements OnInit {
   onSubmit() {
     if (this.loginForm.valid) {
       console.log('Login attempt:', this.loginForm.value);
-        var user: any = {
+        var user: UserLogin = {
           Username: this.loginForm.controls['username'].value,
           Password: this.loginForm.controls['password'].value
         }
@@ -54,6 +55,7 @@ export class LoginComponent implements OnInit {
             sessionStorage.setItem('userId', response.id);
             sessionStorage.setItem('company',JSON.stringify(response.company))
             sessionStorage.setItem('nameCompany',response.company[0].name);
+            sessionStorage.setItem('Id_GUID',response.company[0].id_GUID);
 
             this.ComponentsService.updateCompanyName(response.company[0].name);
             // Redirect to admin dashboard or another page

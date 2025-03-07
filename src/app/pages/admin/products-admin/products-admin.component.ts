@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
@@ -9,6 +9,8 @@ import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angula
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatSelectModule } from '@angular/material/select';  // Add this import
+import { Brand, Products } from '../models/models.admin';
+import { AdminService } from '../admin.service';
 @Component({
   selector: 'app-products-admin',
   imports: [
@@ -26,34 +28,84 @@ import { MatSelectModule } from '@angular/material/select';  // Add this import
   templateUrl: './products-admin.component.html',
   styleUrl: './products-admin.component.scss'
 })
-export class ProductsAdminComponent {
+export class ProductsAdminComponent implements OnInit {
+
+  ngOnInit(): void {
+    const id_GUID: string = sessionStorage.getItem('Id_GUID') || "";
+    // Initialize component
+    this.getProducts(id_GUID);
+  }
   productForm: FormGroup;
   public Productos: any[] = [];
-  constructor(private router: Router, private fb: FormBuilder) {
+  constructor(private router: Router, private fb: FormBuilder,
+ private adminService:AdminService
+
+  ) {
   
     this.productForm = this.fb.group({
       nombre: ['', Validators.required],
       precio: ['', [Validators.required, Validators.min(0)]],
-      imageUrl: ['', Validators.required],
+      description: ['', Validators.required],
       status: ['', Validators.required]  // Add this line
     });
   }
 
   onSubmitProduct(): void {
     if (this.productForm.valid) {
-      const newProduct = {
-        Id: 1,
-        Nombre: this.productForm.value.nombre,
-        totalVentas: `$${this.productForm.value.precio}`,
-        Direccion: 'Nueva ubicación',
-        status: 'Activo',
-        statusColor: 'primary'
+      console.log(this.productForm.value.status,"status")
+      var status= this.productForm.value.status=='activo'?1:2;
+      var Id_GUID = sessionStorage.getItem('Id_GUID') || "";
+      const newProduct:Products = {
+        Id: 0,
+        Name: this.productForm.value.nombre,
+        Description: `${this.productForm.value.description}`,
+        Price: this.productForm.value.precio,
+        Status: status,
+        Id_GUID: Id_GUID
       };
 
-     
-      this.productForm.reset();
+     this.adminService.registerProduct(newProduct).subscribe(
+        (response) => {
+          // Handle success
+          console.log('Product registered successfully:', response);
+          // You may want to reset the form or navigate to a different page
+          this.productForm.reset();
+        },
+        (error) => {
+          // Handle error
+          console.error('Error registering product:', error); 
+        }
+      );
+    } else {
+      // Mark form controls as touched to display validation errors
+      this.productForm.markAllAsTouched();
+    
     }
-  }/*
+  }
+
+  getProducts(id_GUID: string) {
+    this.adminService.getProducts(id_GUID).subscribe({
+      next: (response: Products[]) => {
+        this.Productos = response;
+        this.Productos.forEach((product) => {
+          const isActive = product.status === 1;
+          product.statusNombre = isActive ? 'Activo' : 'Inactivo';
+          product.statusColor = isActive ? 'primary' : 'accent';
+        
+          product.statusBrands?.forEach((brand:any) => {
+            brand.statusNombre = brand.status === 1 ? 'Activo' : 'Inactivo';
+          });
+        });
+      },
+      error: (error) => {
+        console.error('Error fetching products:', error);
+      }
+    });
+  }
+  
+  
+  
+  /*
   Productos=[
 
     {

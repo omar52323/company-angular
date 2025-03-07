@@ -2,18 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject,Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
-export default interface UserCreate {
-  Id?:number ,
-  username: string;
-  password?: string;
-  email: string;
-  cellphone: string;
-}
-
-export default interface UserLogin{
-  Username: string;
-  Password: string;
-}
+import { UserCreate,UserLogin } from './models/models.components';
 
 @Injectable({
   providedIn: 'root'
@@ -33,7 +22,7 @@ export class ComponentsService {
     return this.http.post(this.apiUrl+'Company/CreateUser', userData);
   }
 
-  validateUser(credentials: { Username: string; Password: string }): Observable<any> {
+  validateUser(credentials:UserLogin ): Observable<any> {
     return this.http.post(this.apiUrl+'Company/ValidateLogin', credentials);
   }
 

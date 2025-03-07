@@ -15,8 +15,8 @@
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="form-field-spacing">
-          <mat-label>URL de la imagen</mat-label>
-          <input matInput formControlName="imageUrl" placeholder="URL de la imagen">
+          <mat-label>Descripción</mat-label>
+          <input matInput formControlName="description" placeholder="Descripcion">
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="form-field-spacing">
@@ -44,20 +44,20 @@
         <div class="order-header">
           <!-- Información del producto -->
           <div class="order-info">
-            <p class="order-title">ID Producto #{{product.Id}}</p>
-            <p class="order-subtitle">Nombre: {{product.Nombre}}</p>
-            <p class="order-subtitle">Precio: {{product.Precio}}</p>
+            <p class="order-title">ID Producto #{{product.id}}</p>
+            <p class="order-subtitle">Nombre: {{product.name}}</p>
+            <p class="order-subtitle">Precio: {{product.price}}</p>
            
             <mat-chip-set>
-              <mat-chip *ngFor="let status of product.status" [color]="product.statusColor">
-                {{ status.Nombre }} - {{ status.status }}
+              <mat-chip *ngFor="let status of product.statusBrands" [color]="product.statusColor">
+                {{ status.nombre }} - {{ status.statusNombre }}
               </mat-chip>
             </mat-chip-set>
           </div>
           
           <!-- Imagen del producto -->
           <div class="order-image">
-            <img [src]="product.imageUrl" alt="{{product.Nombre}}" />
+            <!--<img [src]="product.imageUrl" alt="{{product.name}}" />-->
           </div>
         </div>
       </mat-card-content>
