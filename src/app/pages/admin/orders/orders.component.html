@@ -19,10 +19,10 @@
       <!-- Header Section -->
       <div class="order-header" (click)="onviewDetail(order)">
         <div class="order-meta">
-          <h2 class="order-title mat-title">Orden #{{order.Id}}</h2>
+          <h2 class="order-title mat-title">Orden #{{order.id}}</h2>
           <div class="status-container">
             <mat-chip [color]="order.statusColor" class="status-chip">
-              {{order.status}}
+              {{order.statusNombre}}
             </mat-chip>
           </div>
         </div>
@@ -30,11 +30,15 @@
         <div class="order-timestamps">
           <p class="mat-body-1">
             <mat-icon class="icon">schedule</mat-icon>
-            {{order.HoraPedido}} - {{order.FechaPedido}}
+            {{order.horaPedido}} - {{order.fechaPedido}}
           </p>
           <p class="mat-body-1">
             <mat-icon class="icon">schedule</mat-icon>
-            {{order.HoraEntrega}} - {{order.FechaEntrega}}
+            {{order.horaEntrega}} - {{order.fechaEntrega}}
+          </p>
+          <p class="mat-body-1">
+            <mat-icon class="icon">schedule</mat-icon>
+            {{order.tiempoEntrega}} 
           </p>
 
         </div>
@@ -42,12 +46,12 @@
 
       <!-- Items Section -->
       <div class="order-items">
-        <div *ngFor="let item of order.item" class="order-item">
+        <div *ngFor="let item of order.orderItems" class="order-item">
           <div class="item-info">
-            <span class="mat-body-2 item-name">{{item.nombre}}</span>
-            <span class="mat-caption">x{{item.cantidad}}</span>
+            <span class="mat-body-2 item-name">{{item.name}}</span>
+            <span class="mat-caption"> x {{item.quantity}}</span>
           </div>
-          <span class="mat-body-1 item-price">{{item.precio | currency}}</span>
+          <span class="mat-body-1 item-price">{{item.price | currency}}</span>
         </div>
       </div>
 
@@ -57,26 +61,16 @@
 </ng-container>
 
 
-
-
-
-
-
-
-
-
-
-
   <ng-container *ngIf="pendingOrdersActive">
     <mat-card *ngFor="let order of OrdersPending" class="order-card">
       <mat-card-content>
         <!-- Header Section -->
         <div class="order-header" (click)="onviewDetail(order)">
           <div class="order-meta">
-            <h2 class="order-title mat-title">Orden #{{order.Id}}</h2>
+            <h2 class="order-title mat-title">Orden #{{order.id}}</h2>
             <div class="status-container">
               <mat-chip [color]="order.statusColor" class="status-chip">
-                {{order.status}}
+                {{order.statusNombre}}
               </mat-chip>
             </div>
           </div>
@@ -84,32 +78,32 @@
           <div class="order-timestamps">
             <p class="mat-body-1">
               <mat-icon class="icon">schedule</mat-icon>
-              {{order.HoraPedido}} - {{order.FechaPedido}}
+              {{order.horaPedido}} - {{order.fechaPedido}}
             </p>
           </div>
         </div>
   
         <!-- Items Section -->
         <div class="order-items">
-          <div *ngFor="let item of order.item" class="order-item">
+          <div *ngFor="let item of order.orderItems" class="order-item">
             <div class="item-info">
-              <span class="mat-body-2 item-name">{{item.nombre}}</span>
-              <span class="mat-caption">x{{item.cantidad}}</span>
+              <span class="mat-body-2 item-name">{{item.name}}</span>
+              <span class="mat-caption"> x {{item.quantity}}</span>
             </div>
-            <span class="mat-body-1 item-price">{{item.precio | currency}}</span>
+            <span class="mat-body-1 item-price">{{item.price | currency}}</span>
           </div>
         </div>
   
         <!-- Actions Section -->
         <div class="order-actions">
           <mat-chip-set>
-            <mat-chip class="action-chip green-chip" (click)="onDelivered(order)">
+            <mat-chip *ngIf="order.status==1" class="action-chip green-chip" (click)="onDelivered(order)">
               <mat-icon>delivery_dining</mat-icon>
               Entregar
             </mat-chip>
-            <mat-chip class="action-chip red-chip" (click)="onPay(order)">
+            <mat-chip  class="action-chip red-chip" (click)="onPay(order)" [disabled]="order.status==1">
               <mat-icon>payments</mat-icon>
-              Pagada
+              Pagar
             </mat-chip>
           </mat-chip-set>
         </div>

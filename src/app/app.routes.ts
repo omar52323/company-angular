@@ -16,7 +16,7 @@ export const routes: Routes = [
   },
   {
     //admin/:company/branches/:branch/orders
-    path: 'admin/orders',
+    path: 'admin/orders/:Id_GUID/:Id_Brand',
     loadComponent: () => 
       import('./pages/admin/orders/orders.component').then(m => m.OrdersComponent)
   },
@@ -46,14 +46,14 @@ export const routes: Routes = [
 
   },
   {
-  path: 'admin/productsList',
+  path: 'admin/productsList/:Id_GUID/:Id_Brand',
     loadComponent: () => 
         import('./pages/admin/products-list/products-list.component').then(m => m.ProductsListComponent)
 
   },
   {
     //clients/:company/branches/:branch/orders
-    path:'clients/orders',
+    path:'clients/orders/:Id_GUID/:Id_Brand',
     loadComponent: () =>
       import('./pages/clients/order-request/order-request.component').then(m => m.OrderRequestComponent)
   },

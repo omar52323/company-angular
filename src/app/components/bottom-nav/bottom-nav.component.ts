@@ -17,8 +17,8 @@ export class BottomNavComponent {
   navItems = [
     { path: '/admin', icon: 'dashboard', label: 'Dashboard' },
     { path: '/admin/branches', icon: 'store', label: 'Sucursales' },
-    { path: '/admin/orders', icon: 'shopping_bag', label: 'Ordernes' },
-    {path: '/admin/products', icon: 'category', label: 'Productos'},
+    //{ path: '/admin/orders', icon: 'shopping_bag', label: 'Ordernes' },
+    {path: '/admin/products-admin', icon: 'category', label: 'Productos'},
     //{ path: '/admin/inventory', icon: 'inventory', label: 'Inventario' },
     { path: '/admin/reports', icon: 'bar_chart', label: 'Reportes' },
     { path: '/admin/settings', icon: 'settings', label: 'Configuracion' }

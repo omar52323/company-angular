@@ -26,3 +26,11 @@ export  interface  Company {
     Id_GUID:string;
     StatusBrands?:Brand[]
   }
+
+  export interface ProductByBrand{
+    Id_Product:number,
+    Id_Brand:number,
+    Id_GUID:string,
+    Status:number
+  }
+  

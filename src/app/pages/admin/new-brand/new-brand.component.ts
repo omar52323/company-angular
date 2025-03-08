@@ -71,6 +71,6 @@ export class NewBrandComponent {
   }
 
   onCancel() {
-    this.router.navigate(['/admin/products']);
+    this.router.navigate(['/admin/branches']);
   }
 }

@@ -69,8 +69,10 @@ export class BranchesComponent implements OnInit {
 
 
   onBranch(branch: any) {
-    console.log('Branch',branch.Id);
-    this.router.navigate(['/admin/orders']);
+    console.log('Branch',branch.id);
+    sessionStorage.setItem('Id_Brand', branch.id);
+   var Id_GUID= sessionStorage.getItem('Id_GUID');
+    this.router.navigate(['/admin/orders/'+Id_GUID+'/'+branch.id]);
   }
   onProducts(branch: any) {
     console.log('Branch',branch.Id);
@@ -99,6 +101,8 @@ closeQrCode() {
         branch.statusColor = branch.status === 'Activa' ? 'primary' : 'accent';
         branch.status= branch.status === 1 ? 'Activa' : 'Inactiva';
       });
+      console.log(this.Branches,'brands')
     });
+    
   }
 }

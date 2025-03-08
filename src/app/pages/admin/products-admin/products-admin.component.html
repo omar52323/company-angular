@@ -19,13 +19,13 @@
           <input matInput formControlName="description" placeholder="Descripcion">
         </mat-form-field>
 
-        <mat-form-field appearance="outline" class="form-field-spacing">
+        <!--<mat-form-field appearance="outline" class="form-field-spacing">
           <mat-label>Estado</mat-label>
           <mat-select formControlName="status">
             <mat-option value="activo">Activo</mat-option>
             <mat-option value="inactivo">Inactivo</mat-option>
           </mat-select>
-        </mat-form-field>
+        </mat-form-field>-->
 
         <button mat-raised-button color="primary" type="submit" [disabled]="!productForm.valid">
           Crear Producto
@@ -49,7 +49,7 @@
             <p class="order-subtitle">Precio: {{product.price}}</p>
            
             <mat-chip-set>
-              <mat-chip *ngFor="let status of product.statusBrands" [color]="product.statusColor">
+              <mat-chip *ngFor="let status of product.statusBrands" [color]="product.statusColor" (click)="changeStatus(product,status)">
                 {{ status.nombre }} - {{ status.statusNombre }}
               </mat-chip>
             </mat-chip-set>

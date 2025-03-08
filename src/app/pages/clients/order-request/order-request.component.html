@@ -41,6 +41,22 @@
               Ingrese un número de teléfono válido
             </mat-error>
           </mat-form-field>
+
+          <mat-form-field appearance="outline">
+            <mat-label>Correo Electrónico</mat-label>
+            <input
+              matInput
+              type="email"
+              id="customerEmail"
+              placeholder="ejemplo@correo.com"
+              formControlName="email"
+              required
+            />
+            <mat-icon matPrefix>email</mat-icon>
+            <mat-error *ngIf="customerForm.get('email')?.invalid && customerForm.get('email')?.touched">
+              Ingrese un correo electrónico válido
+            </mat-error>
+          </mat-form-field>
         </div>
       </form>
     </mat-card-content>
@@ -54,10 +70,20 @@
       <mat-card *ngFor="let product of products" class="product-card">
         <mat-card-content>
           <div class="product-info">
-            <img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />
+            <!--<img [src]="product.imageUrl" alt="{{ product.name }}" class="product-image" />-->
             <div class="product-details">
               <p class="product-name">{{ product.name }}</p>
+              <p class="product-description">{{ product.description }}</p>
               <p class="product-price">$ {{ product.price | number }}</p>
+              <mat-form-field appearance="outline" class="product-notes">
+                <mat-label>Notas adicionales</mat-label>
+                <textarea 
+                  matInput
+                  placeholder="Ingrese detalles adicionales para este producto"
+                  [(ngModel)]="product.additionalNotes"
+                  rows="2">
+                </textarea>
+              </mat-form-field>
             </div>
           </div>
         </mat-card-content>
