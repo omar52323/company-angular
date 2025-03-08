@@ -10,18 +10,8 @@ import { MatExpansionModule } from '@angular/material/expansion';
 import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { FormsModule } from '@angular/forms';
-
-interface Sale {
-  date: Date;
-  product: string;
-  amount: number;
-}
-
-interface Branch {
-  name: string;
-  totalSales: number;
-  sales: Sale[];
-}
+import { BranchSales, SalesFilter } from '../models/models.admin';
+import { AdminService } from '../admin.service';
 
 @Component({
   selector: 'app-reports',
@@ -46,8 +36,8 @@ export class ReportsComponent implements OnInit {
   startDate: Date | null = null;
   endDate: Date | null = null;
   displayedColumns: string[] = ['date', 'product', 'amount'];
-  
-  branches: Branch[] = [
+  public branches: BranchSales[] = [];
+  /*branches: BranchSales[] = [
     {
       name: 'Branch 1',
       totalSales: 15000,
@@ -66,9 +56,9 @@ export class ReportsComponent implements OnInit {
         // Add more sample data as needed
       ]
     }
-  ];
+  ];*/
 
-  constructor() {}
+  constructor(public AdminService:AdminService) {}
 
   ngOnInit() {
     // Initialize with current month's data
@@ -80,8 +70,20 @@ export class ReportsComponent implements OnInit {
   filterSales() {
     if (this.startDate && this.endDate) {
       console.log('Filtering sales between:', this.startDate, 'and', this.endDate);
-      // Here you would typically call a service to fetch filtered data
-      // For now, we'll just log the date range
+      const startDate = this.startDate?.toISOString().split('T')[0];
+      const endDate = this.endDate?.toISOString().split('T')[0];
+      var Id_GUID=sessionStorage.getItem('Id_GUID')||'';
+      var salesfilter:SalesFilter={
+        StartDate:startDate,
+        EndDate:endDate,
+        Id_GUID:Id_GUID
+      }
+
+      this.AdminService.getSales(salesfilter).subscribe((data:any)=>{
+        console.log(data);
+        this.branches=data;
+      });
+
     }
   }
 }

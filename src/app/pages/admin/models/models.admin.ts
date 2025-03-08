@@ -33,4 +33,22 @@ export  interface  Company {
     Id_GUID:string,
     Status:number
   }
+
+  export interface Sale {
+    date: Date;
+    product: string;
+    amount: number;
+  }
+  
+  export interface BranchSales {
+    name: string;
+    totalSales: number;
+    sales: Sale[];
+  }
+
+  export  interface SalesFilter  {
+    StartDate: string;
+    EndDate: string;
+    Id_GUID: string;
+  };
   

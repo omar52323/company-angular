@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
-import { Company,Brand, Products,ProductByBrand } from './models/models.admin';
+import { Company,Brand, Products,ProductByBrand, SalesFilter } from './models/models.admin';
 import { Order } from '../clients/models/models.clients';
 @Injectable({
   providedIn: 'root'
@@ -42,6 +42,9 @@ export class AdminService {
   }
   ChangeProductByBrand(productBrand:ProductByBrand){
     return this.http.post(this.apiUrl+'Company/ChangeProductByBrand', productBrand);
+  }
+  getSales(salesFilter:SalesFilter){
+    return this.http.post(this.apiUrl+'Company/GetSales', salesFilter);
   }
 
  
