@@ -51,4 +51,15 @@ export  interface  Company {
     EndDate: string;
     Id_GUID: string;
   };
+
+export interface Stats {
+    Id: number;
+    Icon: string | undefined;
+    Label: string | undefined;
+    Value: string | undefined;
+    Change: string | undefined;
+    ChangeClass: string | undefined;
+}
+
+
   

@@ -47,5 +47,13 @@ export class AdminService {
     return this.http.post(this.apiUrl+'Company/GetSales', salesFilter);
   }
 
+  getStats(Id_GUID:string){
+    return this.http.get(this.apiUrl+'Company/GetStats/'+Id_GUID);
+  }
+
+  getRecentOrders(Id_GUID:string){
+    return this.http.get(this.apiUrl+'Company/GetRecentOrders/'+Id_GUID);
+  }
+
  
 }

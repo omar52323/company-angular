@@ -4,11 +4,11 @@
       <mat-card *ngFor="let stat of stats" class="stat-card">
         <mat-card-content>
           <div class="stat-header">
-            <mat-icon>{{stat.icon}}</mat-icon>
-            <span [class]="stat.changeClass">{{stat.change}}</span>
+            <mat-icon>{{stat.Icon}}</mat-icon>
+            <span [class]="stat.ChangeClass">{{stat.Change}}</span>
           </div>
           <div class="stat-content">
-            <p class="stat-label">{{stat.label}}</p>
+            <p class="stat-label">{{stat.Label}}</p>
             <p class="stat-value">{{stat.value}}</p>
           </div>
         </mat-card-content>
@@ -33,11 +33,11 @@
           <div class="order-header">
             <div>
               <p class="order-title">Orden #{{order.id}}</p>
-              <p class="order-subtitle">{{order.items}} items • {{order.total}}</p>
+              <p class="order-subtitle">Sucursal {{order.branchName}} Total Orden ${{order.total}}</p>
             </div>
             <mat-chip-set>
               <mat-chip [color]="order.statusColor">
-                {{order.status}}
+                {{order.statusNombre}}
               </mat-chip>
             </mat-chip-set>
           </div>
@@ -47,6 +47,5 @@
   </div>
 
   <ng-container >
-    <!-- Make sure NewCompanyComponent is imported in the dashboard component -->
     <app-new-company *ngIf="!companys"></app-new-company>
   </ng-container>

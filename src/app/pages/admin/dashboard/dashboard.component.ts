@@ -6,7 +6,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatChipsModule } from '@angular/material/chips';
 import { NewCompanyComponent } from '../new-company/new-company.component';
-
+import { Stats } from '../models/models.admin';
+import { AdminService } from '../admin.service';
 @Component({
   selector: 'app-dashboard',
   standalone: true,
@@ -22,7 +23,7 @@ import { NewCompanyComponent } from '../new-company/new-company.component';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-  constructor() { }
+  constructor(public adminService:AdminService) { }
   companys:any[] = [];
   public stats:any[] = [];
   public recentOrders:any[] = [];
@@ -32,41 +33,43 @@ export class DashboardComponent implements OnInit {
     if (companyData) {
       this.companys = JSON.parse(companyData);
       console.log(this.companys,'companys');
+      this.getStats(this.companys[0].id_GUID);
+      this.getRecentOrders(this.companys[0].id_GUID);
     }
-
     console.log(this.companys,'companys')
   }
- /* stats = [
+  statsModel = [
     { 
+      Id:1,
       icon: 'trending_up',
       label: 'Ventas del dia',
       value: '$1,234',
-      change: '+12.5%',
+      change: '',
       changeClass: 'text-success'
     },
-    { 
+    { Id:2,
       icon: 'people',
       label: 'Ordenes Activas',
       value: '23',
-      change: '5 pending',
+      change: '',
       changeClass: 'text-warning'
     },
-    { 
+    { Id:3,
       icon: 'schedule',
       label: 'Tiempo Promedio',
       value: '18 min',
-      change: '-2 min',
+      change: '',
       changeClass: 'text-success'
     },
-    { 
+    { Id:4,
       icon: 'warning',
       label: 'Alertas',
-      value: '3',
-      change: '2 urgent',
+      value: '0',
+      change: '',
       changeClass: 'text-error'
     }
   ];
-
+/*
   recentOrders = [
     { 
       id: '1234',
@@ -90,4 +93,46 @@ export class DashboardComponent implements OnInit {
       statusColor: 'accent'
     }
   ];*/
+  statusOrders:any[] = [
+    {
+      Id:1,
+      Nombre:'Activa',
+      Color:'primary'
+    },
+    {
+      Id:2,
+      Nombre:'Entregada',
+      Color:'accent'
+    },
+    {
+      Id:3,
+      Nombre:'Pagada',
+      Color:'warn'
+    }
+  ];
+  getStats(Id_GUID:string){
+    this.adminService.getStats(Id_GUID).subscribe((res:any)=>{
+      this.stats = res;
+      this.stats.forEach((stat)=>{
+        stat.Icon = this.statsModel.find((s)=>s.Id === stat.id)?.icon;
+        //stat.Value = this.statsModel.find((s)=>s.Id === stat.id)?.value.toString();
+        stat.Change = this.statsModel.find((s)=>s.Id === stat.id)?.change;
+        stat.ChangeClass = this.statsModel.find((s)=>s.Id === stat.id)?.changeClass;
+        stat.Label= this.statsModel.find((s)=>s.Id === stat.id)?.label;
+      });
+      console.log(this.stats,'stats');
+    });
+  }
+
+  getRecentOrders(Id_GUID:string){
+    this.adminService.getRecentOrders(Id_GUID).subscribe((res:any)=>{
+      this.recentOrders = res;
+
+      this.recentOrders.forEach((order:any)=>{
+        order.statusNombre=this.statusOrders.find((status:any)=>status.Id===order.status)?.Nombre;
+      });
+      
+      console.log(this.recentOrders,'recentOrders');
+    });
+  }
 }
