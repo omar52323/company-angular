@@ -1,0 +1,53 @@
+.settings-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+    margin-top: 80px; /* Added margin-top to prevent overlap with header */
+  }
+  
+  .user-info-card,
+  .password-card {
+    margin-bottom: 20px;
+  }
+  
+  .info-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+    
+    .info-label {
+      font-weight: 500;
+      color: rgba(0, 0, 0, 0.6);
+      margin-bottom: 4px;
+    }
+    
+    .info-value {
+      font-size: 16px;
+    }
+  }
+  
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    margin-top: 16px;
+  }
+  
+  .form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+    margin-top: 8px;
+  }
+  
+  @media (min-width: 600px) {
+    .info-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }

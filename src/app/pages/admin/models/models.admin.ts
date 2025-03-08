@@ -61,5 +61,13 @@ export interface Stats {
     ChangeClass: string | undefined;
 }
 
+export interface User {
+id:number,
+username:string,
+email:string,
+password:string,
+cellphone:string,
+}
+
 
   

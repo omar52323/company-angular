@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { HttpClientModule } from '@angular/common/http';
-import { Company,Brand, Products,ProductByBrand, SalesFilter } from './models/models.admin';
+import { Company,Brand, Products,ProductByBrand, SalesFilter, User } from './models/models.admin';
 import { Order } from '../clients/models/models.clients';
 @Injectable({
   providedIn: 'root'
@@ -53,6 +53,14 @@ export class AdminService {
 
   getRecentOrders(Id_GUID:string){
     return this.http.get(this.apiUrl+'Company/GetRecentOrders/'+Id_GUID);
+  }
+
+  getInfoUser(Id_User:string){
+    return this.http.get(this.apiUrl+'Company/GetUserInfo/'+Id_User);
+  }
+
+  changePassword(User:User){
+    return this.http.post(this.apiUrl+'Company/ChangePassword', User);
   }
 
  
