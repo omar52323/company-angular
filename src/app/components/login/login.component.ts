@@ -8,6 +8,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { Router } from '@angular/router';
 import { ComponentsService } from '../components.service';
 import { UserLogin } from '../models/models.components';
+import Swal from 'sweetalert2';
 @Component({
   selector: 'app-login',
   standalone: true,
@@ -64,7 +65,12 @@ export class LoginComponent implements OnInit {
          
         },
         (error) => {
-          console.error('Login failed:', error);
+          console.error('Login failed:', error.error);
+          Swal.fire({
+            icon: 'error',
+            title: 'Oops...',
+            text: "Usuario o contraseña incorrectos ",
+          })
           // Handle login failure (e.g., show an error message)
         }
       );

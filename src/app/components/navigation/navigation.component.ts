@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 import { MatMenuModule } from '@angular/material/menu';
 import { ComponentsService } from '../components.service';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-navigation',
   standalone: true,
@@ -18,7 +19,11 @@ import { ComponentsService } from '../components.service';
   styleUrls: ['./navigation.component.css']
 })
 export class NavigationComponent implements OnInit {
-  constructor(private componentService: ComponentsService){
+  constructor(
+    private componentService: ComponentsService,
+    private router:Router,
+  
+  ){
 
   }
   companyName: string = 'Company';
@@ -30,5 +35,10 @@ export class NavigationComponent implements OnInit {
   }
   toggleMenu() {
     // Implement menu toggle logic
+  }
+  logout() {
+    sessionStorage.clear();
+    this.componentService.updateCompanyName("Company");
+    this.router.navigate(['/login']);
   }
 }

@@ -30,6 +30,10 @@
               <mat-chip (click)="getQrCode(branch)" class="action-chip"> 
                 QR Clientes
               </mat-chip>
+
+              <mat-chip (click)="createOrderLink(branch)" class="action-chip"> 
+                Crear Orden
+              </mat-chip>
             </div>
             <mat-chip-set>
               <mat-chip [color]="branch.statusColor">

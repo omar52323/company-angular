@@ -85,6 +85,10 @@ getQrCode(branch: any) {
   this.selectedBranchQr = branch.linkRequest;
   this.showQrCode = true;
 }
+createOrderLink(branch: any) {
+  var route= `clients/orders/${branch.id_GUID}/${branch.id}`;
+  this.router.navigate([route]);
+}
 
 closeQrCode() {
   this.showQrCode = false;
